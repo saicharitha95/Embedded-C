@@ -1,0 +1,44 @@
+#include <stdio.h>
+
+int main()
+{
+    int arr[100];
+    int visited[100] = {0};
+    int n, i, j;
+    int count;
+
+    printf("Enter the number of elements: ");
+    scanf("%d", &n);
+
+    printf("Enter %d elements:\n", n);
+
+    for (i = 0; i < n; i++)
+    {
+        scanf("%d", &arr[i]);
+    }
+
+    printf("Frequency of each element:\n");
+
+    for (i = 0; i < n; i++)
+    {
+        if (visited[i] == 1)
+        {
+            continue;
+        }
+
+        count = 1;
+
+        for (j = i + 1; j < n; j++)
+        {
+            if (arr[i] == arr[j])
+            {
+                count++;
+                visited[j] = 1;
+            }
+        }
+
+        printf("%d occurs %d time(s)\n", arr[i], count);
+    }
+
+    return 0;
+}

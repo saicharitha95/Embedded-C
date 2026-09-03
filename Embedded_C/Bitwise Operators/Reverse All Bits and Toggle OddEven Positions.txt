@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <stdint.h>
+
+uint32_t reverseBits(uint32_t num)
+{
+    uint32_t result = 0;
+    int i;
+
+    for (i = 0; i < 32; i++)
+    {
+        result = result << 1;
+        result = result | (num & 1U);
+        num = num >> 1;
+    }
+
+    return result;
+}
+
+uint32_t toggleOddBits(uint32_t num)
+{
+    return num ^ 0xAAAAAAAAU;
+}
+
+uint32_t toggleEvenBits(uint32_t num)
+{
+    return num ^ 0x55555555U;
+}
+
+int main(void)
+{
+    uint32_t num;
+
+    printf("Enter a 32-bit unsigned integer: ");
+    scanf("%u", &num);
+
+    printf("Original number = %u\n", num);
+    printf("Reverse all bits = %u\n", reverseBits(num));
+    printf("Toggle odd-position bits = %u\n", toggleOddBits(num));
+    printf("Toggle even-position bits = %u\n", toggleEvenBits(num));
+
+    return 0;
+}

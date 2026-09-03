@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <stdint.h>
+
+int countSetBits(uint32_t num)
+{
+    int count = 0;
+
+    while (num != 0)
+    {
+        num = num & (num - 1);
+        count++;
+    }
+
+    return count;
+}
+
+int main(void)
+{
+    uint32_t A, B;
+    uint32_t result;
+    int count;
+
+    printf("Enter A: ");
+    scanf("%u", &A);
+
+    printf("Enter B: ");
+    scanf("%u", &B);
+
+    result = A ^ B;
+
+    count = countSetBits(result);
+
+    printf("Number of bits to flip = %d\n", count);
+
+    return 0;
+}

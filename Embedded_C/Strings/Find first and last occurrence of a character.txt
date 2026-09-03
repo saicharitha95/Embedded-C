@@ -1,0 +1,44 @@
+#include <stdio.h>
+
+int main()
+{
+    char str[100];
+    char ch;
+    int i;
+    int first = -1;
+    int last = -1;
+
+    printf("Enter a string: ");
+    scanf(" %[^\n]", str);
+
+    printf("Enter the character to search: ");
+    scanf(" %c", &ch);
+
+    for (i = 0; str[i] != '\0'; i++)
+    {
+        if (str[i] == ch)
+        {
+            if (first == -1)
+            {
+                first = i;
+            }
+
+            last = i;
+        }
+    }
+
+    if (first != -1)
+    {
+        printf("First occurrence of '%c' is at position: %d\n",
+               ch, first);
+
+        printf("Last occurrence of '%c' is at position: %d\n",
+               ch, last);
+    }
+    else
+    {
+        printf("Character '%c' not found in the string\n", ch);
+    }
+
+    return 0;
+}

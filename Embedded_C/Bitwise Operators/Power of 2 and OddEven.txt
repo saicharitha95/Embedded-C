@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdint.h>
+
+int isPowerOfTwo(uint32_t num)
+{
+    if (num == 0)
+        return 0;
+
+    return ((num & (num - 1)) == 0);
+}
+
+int main(void)
+{
+    uint32_t num;
+
+    printf("Enter a positive integer: ");
+    scanf("%u", &num);
+
+    if (num & 1U)
+        printf("%u is Odd\n", num);
+    else
+        printf("%u is Even\n", num);
+
+    if (isPowerOfTwo(num))
+        printf("%u is a Power of 2\n", num);
+    else
+        printf("%u is NOT a Power of 2\n", num);
+
+    return 0;
+}

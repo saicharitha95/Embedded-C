@@ -1,0 +1,59 @@
+#include <stdio.h>
+
+int main()
+{
+    char str[100];
+    int frequency[256] = {0};
+    int i;
+    int max = 0;
+    int min = 1000000;
+
+    printf("Enter a string: ");
+    scanf(" %[^\n]", str);
+
+    /* Count frequency */
+    for (i = 0; str[i] != '\0'; i++)
+    {
+        frequency[(unsigned char)str[i]]++;
+    }
+
+    /* Find highest frequency */
+    for (i = 0; i < 256; i++)
+    {
+        if (frequency[i] > max)
+        {
+            max = frequency[i];
+        }
+    }
+
+    /* Find lowest frequency */
+    for (i = 0; i < 256; i++)
+    {
+        if (frequency[i] > 0 && frequency[i] < min)
+        {
+            min = frequency[i];
+        }
+    }
+
+    printf("Highest frequency characters:\n");
+
+    for (i = 0; i < 256; i++)
+    {
+        if (frequency[i] == max)
+        {
+            printf("'%c' appears %d times\n", i, max);
+        }
+    }
+
+    printf("Lowest frequency characters:\n");
+
+    for (i = 0; i < 256; i++)
+    {
+        if (frequency[i] == min)
+        {
+            printf("'%c' appears %d time(s)\n", i, min);
+        }
+    }
+
+    return 0;
+}

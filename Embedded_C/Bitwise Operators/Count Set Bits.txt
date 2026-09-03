@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdint.h>
+
+int countSetBits(uint32_t num)
+{
+    int count = 0;
+
+    while (num != 0)
+    {
+        num = num & (num - 1);
+        count++;
+    }
+
+    return count;
+}
+
+int main(void)
+{
+    uint32_t num;
+    int count;
+
+    printf("Enter a 32-bit unsigned integer: ");
+    scanf("%u", &num);
+
+    count = countSetBits(num);
+
+    printf("Number of set bits = %d\n", count);
+
+    return 0;
+}

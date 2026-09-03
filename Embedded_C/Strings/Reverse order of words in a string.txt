@@ -1,0 +1,56 @@
+#include <stdio.h>
+
+int main()
+{
+    char str[200];
+    char words[50][50];
+    int i = 0, j = 0, k = 0;
+    int word_count = 0;
+
+    printf("Enter a string: ");
+    scanf(" %[^\n]", str);
+
+    /* Separate words */
+    while (str[i] != '\0')
+    {
+        if (str[i] != ' ')
+        {
+            words[word_count][j] = str[i];
+            j++;
+        }
+        else
+        {
+            if (j > 0)
+            {
+                words[word_count][j] = '\0';
+                word_count++;
+                j = 0;
+            }
+        }
+
+        i++;
+    }
+
+    /* Store last word */
+    if (j > 0)
+    {
+        words[word_count][j] = '\0';
+        word_count++;
+    }
+
+    printf("Words in reverse order: ");
+
+    for (i = word_count - 1; i >= 0; i--)
+    {
+        printf("%s", words[i]);
+
+        if (i != 0)
+        {
+            printf(" ");
+        }
+    }
+
+    printf("\n");
+
+    return 0;
+}

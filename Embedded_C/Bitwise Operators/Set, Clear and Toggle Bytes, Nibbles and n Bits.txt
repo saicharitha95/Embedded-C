@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include <stdint.h>
+
+int main(void)
+{
+    uint32_t num, mask, result;
+    unsigned int n;
+
+    printf("Enter a 32-bit unsigned integer: ");
+    scanf("%u", &num);
+
+    printf("Original number = %u\n", num);
+
+    result = num | 0x000000FFU;
+    printf("LSB byte set = %u\n", result);
+
+    result = num | 0xFF000000U;
+    printf("MSB byte set = %u\n", result);
+
+    result = num | 0x0000000FU;
+    printf("LSB nibble set = %u\n", result);
+
+    result = num | 0xF0000000U;
+    printf("MSB nibble set = %u\n", result);
+
+    printf("Enter number of bits: ");
+    scanf("%u", &n);
+
+    if (n == 0 || n > 32)
+    {
+        printf("Invalid number of bits\n");
+        return 0;
+    }
+
+    if (n == 32)
+        mask = 0xFFFFFFFFU;
+    else
+        mask = (1U << n) - 1U;
+
+    result = num | mask;
+    printf("Set %u bits = %u\n", n, result);
+
+    result = num & ~mask;
+    printf("Clear %u bits = %u\n", n, result);
+
+    result = num ^ mask;
+    printf("Toggle %u bits = %u\n", n, result);
+
+    return 0;
+}

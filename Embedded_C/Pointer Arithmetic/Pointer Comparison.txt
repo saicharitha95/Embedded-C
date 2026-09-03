@@ -1,0 +1,18 @@
+#include <stdio.h>
+
+int main(void)
+{
+    int arr[5] = {10, 20, 30, 40, 50};
+
+    int *p1 = &arr[1];
+    int *p2 = &arr[3];
+
+    if (p1 < p2)
+        printf("p1 points to an earlier element\n");
+    else if (p1 > p2)
+        printf("p2 points to an earlier element\n");
+    else
+        printf("Both pointers point to the same element\n");
+
+    return 0;
+}

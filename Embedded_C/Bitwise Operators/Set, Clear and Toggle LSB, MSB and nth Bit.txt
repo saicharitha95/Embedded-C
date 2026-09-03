@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdint.h>
+
+int main(void)
+{
+    uint32_t num, result;
+    unsigned int n;
+
+    printf("Enter a 32-bit unsigned integer: ");
+    scanf("%u", &num);
+
+    printf("Enter bit position (0-31): ");
+    scanf("%u", &n);
+
+    if (n > 31)
+    {
+        printf("Invalid bit position\n");
+        return 0;
+    }
+
+    result = num | 1U;
+    printf("Set LSB = %u\n", result);
+
+    result = num & ~1U;
+    printf("Clear LSB = %u\n", result);
+
+    result = num ^ 1U;
+    printf("Toggle LSB = %u\n", result);
+
+    result = num | (1U << 31);
+    printf("Set MSB = %u\n", result);
+
+    result = num & ~(1U << 31);
+    printf("Clear MSB = %u\n", result);
+
+    result = num ^ (1U << 31);
+    printf("Toggle MSB = %u\n", result);
+
+    result = num | (1U << n);
+    printf("Set bit %u = %u\n", n, result);
+
+    result = num & ~(1U << n);
+    printf("Clear bit %u = %u\n", n, result);
+
+    result = num ^ (1U << n);
+    printf("Toggle bit %u = %u\n", n, result);
+
+    return 0;
+}
