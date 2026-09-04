@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+union Sample
+{
+    int i;
+    float f;
+};
+
+int main(void)
+{
+    union Sample sample;
+    union Sample *ptr = &sample;
+
+    printf("Enter an integer: ");
+    scanf("%d", &ptr->i);
+
+    printf("Integer using pointer = %d\n", ptr->i);
+
+    printf("Enter a float: ");
+    scanf("%f", &ptr->f);
+
+    printf("Float using pointer = %.2f\n", ptr->f);
+
+    printf("Address of union = %p\n", (void *)ptr);
+
+    return 0;
+}
