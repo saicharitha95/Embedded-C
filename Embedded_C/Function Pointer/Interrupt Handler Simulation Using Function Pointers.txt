@@ -1,0 +1,57 @@
+#include <stdio.h>
+
+void timerInterrupt(void)
+{
+    printf("Timer interrupt handler executed\n");
+}
+
+void keyboardInterrupt(void)
+{
+    printf("Keyboard interrupt handler executed\n");
+}
+
+void errorInterrupt(void)
+{
+    printf("Error interrupt handler executed\n");
+}
+
+int main(void)
+{
+    int interruptNumber;
+
+    void (*interruptHandlers[3])(void) =
+    {
+        timerInterrupt,
+        keyboardInterrupt,
+        errorInterrupt
+    };
+
+    printf("Interrupt Numbers:\n");
+    printf("0 - Timer Interrupt\n");
+    printf("1 - Keyboard Interrupt\n");
+    printf("2 - Error Interrupt\n");
+    printf("3 - Exit\n");
+
+    while (1)
+    {
+        printf("\nEnter interrupt number: ");
+        scanf("%d", &interruptNumber);
+
+        if (interruptNumber == 3)
+        {
+            printf("Exiting\n");
+            break;
+        }
+
+        if (interruptNumber >= 0 && interruptNumber < 3)
+        {
+            interruptHandlers[interruptNumber]();
+        }
+        else
+        {
+            printf("Invalid interrupt number\n");
+        }
+    }
+
+    return 0;
+}

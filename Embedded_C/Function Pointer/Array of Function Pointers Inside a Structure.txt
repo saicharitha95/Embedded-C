@@ -1,0 +1,57 @@
+#include <stdio.h>
+
+typedef int (*Operation)(int, int);
+
+int add(int a, int b)
+{
+    return a + b;
+}
+
+int subtract(int a, int b)
+{
+    return a - b;
+}
+
+int multiply(int a, int b)
+{
+    return a * b;
+}
+
+typedef struct
+{
+    Operation operations[3];
+} Calculator;
+
+int main(void)
+{
+    Calculator calc;
+    int a, b, choice;
+
+    calc.operations[0] = add;
+    calc.operations[1] = subtract;
+    calc.operations[2] = multiply;
+
+    printf("Enter first number: ");
+    scanf("%d", &a);
+
+    printf("Enter second number: ");
+    scanf("%d", &b);
+
+    printf("\n1. Add\n");
+    printf("2. Subtract\n");
+    printf("3. Multiply\n");
+
+    printf("Enter your choice: ");
+    scanf("%d", &choice);
+
+    if (choice < 1 || choice > 3)
+    {
+        printf("Invalid choice\n");
+        return 0;
+    }
+
+    printf("Result = %d\n",
+           calc.operations[choice - 1](a, b));
+
+    return 0;
+}
