@@ -1,0 +1,82 @@
+#include <stdio.h>
+#include <string.h>
+
+union StudentData
+{
+    int roll_number;
+    char id[10];
+};
+
+struct Student
+{
+    char type;
+    union StudentData data;
+};
+
+void initializeRollStudent(struct Student *student)
+{
+    student->type = 'R';
+
+    printf("Enter roll number: ");
+    scanf("%d", &student->data.roll_number);
+}
+
+void initializeIdStudent(struct Student *student)
+{
+    student->type = 'I';
+
+    printf("Enter student ID: ");
+    scanf("%9s", student->data.id);
+}
+
+void displayStudent(struct Student *student)
+{
+    if (student->type == 'R')
+    {
+        printf("\nStudent Type: Roll Number\n");
+        printf("Roll Number = %d\n", student->data.roll_number);
+    }
+    else if (student->type == 'I')
+    {
+        printf("\nStudent Type: ID\n");
+        printf("Student ID = %s\n", student->data.id);
+    }
+    else
+    {
+        printf("\nInvalid student type\n");
+    }
+}
+
+int main(void)
+{
+    struct Student student;
+    char type;
+
+    printf("Enter student type:\n");
+    printf("R - Roll Number\n");
+    printf("I - Student ID\n");
+
+    printf("Enter your choice: ");
+    scanf(" %c", &type);
+
+    if (type == 'R' || type == 'r')
+    {
+        initializeRollStudent(&student);
+    }
+    else if (type == 'I' || type == 'i')
+    {
+        initializeIdStudent(&student);
+    }
+    else
+    {
+        printf("Invalid choice\n");
+        return 0;
+    }
+
+    displayStudent(&student);
+
+    printf("\nSize of union = %zu bytes\n", sizeof(student.data));
+    printf("Size of structure = %zu bytes\n", sizeof(student));
+
+    return 0;
+}

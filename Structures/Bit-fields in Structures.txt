@@ -1,0 +1,74 @@
+#include <stdio.h>
+
+struct StatusRegister
+{
+    unsigned int ready : 1;
+    unsigned int error : 1;
+    unsigned int busy : 1;
+    unsigned int mode : 2;
+    unsigned int reserved : 3;
+};
+
+int main(void)
+{
+    struct StatusRegister status;
+    int ready, error, busy, mode;
+
+    printf("Enter Ready status (0/1): ");
+    scanf("%d", &ready);
+
+    printf("Enter Error status (0/1): ");
+    scanf("%d", &error);
+
+    printf("Enter Busy status (0/1): ");
+    scanf("%d", &busy);
+
+    printf("Enter Mode (0-3): ");
+    scanf("%d", &mode);
+
+    if (ready != 0 && ready != 1)
+    {
+        printf("Invalid Ready value\n");
+        return 0;
+    }
+
+    if (error != 0 && error != 1)
+    {
+        printf("Invalid Error value\n");
+        return 0;
+    }
+
+    if (busy != 0 && busy != 1)
+    {
+        printf("Invalid Busy value\n");
+        return 0;
+    }
+
+    if (mode < 0 || mode > 3)
+    {
+        printf("Invalid Mode\n");
+        return 0;
+    }
+
+    status.ready = ready;
+    status.error = error;
+    status.busy = busy;
+    status.mode = mode;
+
+    printf("\nStatus Register:\n");
+    printf("Ready = %u\n", status.ready);
+    printf("Error = %u\n", status.error);
+    printf("Busy = %u\n", status.busy);
+    printf("Mode = %u\n", status.mode);
+
+    printf("Size of structure = %zu bytes\n", sizeof(status));
+
+    status.ready = !status.ready;
+    status.error = !status.error;
+
+    printf("\nAfter toggling Ready and Error:\n");
+    printf("Ready = %u\n", status.ready);
+    printf("Error = %u\n", status.error);
+
+    return 0;
+}
